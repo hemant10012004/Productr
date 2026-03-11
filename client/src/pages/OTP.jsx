@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
-
+import api from '../services/api';
 export default function OTP() {
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [timer, setTimer] = useState(30);
@@ -60,7 +59,7 @@ export default function OTP() {
         setError('');
 
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/verify-otp', {
+            const res = await api.post('/api/auth/verify-otp', {
                 identifier,
                 otp: otpValue
             });
@@ -79,7 +78,7 @@ export default function OTP() {
         setTimer(30);
         setError('');
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/send-otp', { identifier });
+            const res = await api.post('/api/auth/send-otp', { identifier });
             alert(`A new OTP has been sent to ${identifier}`);
         } catch (err) {
             setError('Failed to resend OTP');

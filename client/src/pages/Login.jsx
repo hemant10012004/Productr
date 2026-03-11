@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 
 export default function Login() {
     const [isSignup, setIsSignup] = useState(false);
@@ -17,7 +17,7 @@ export default function Login() {
         setError('');
 
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/send-otp', { identifier });
+            const res = await api.post('/api/auth/send-otp', { identifier });
             // In a real app we'd just show "OTP Sent", but here we log it and alert for easy testing
             // Real Implementation: No more exposed dev_otp
             alert(`OTP has been sent to ${identifier}`);
