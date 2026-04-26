@@ -16,21 +16,6 @@ app.use(cors({
 app.use(express.json());
 
 const connectDB = async () => {
-  try {
-    console.log('Connecting to MongoDB Atlas...');
-    await mongoose.connect(process.env.MONGO_URI, {
-      serverSelectionTimeoutMS: 10000
-    });
-    console.log('✅ MongoDB Atlas Connected');
-  } catch (err) {
-    console.error('❌ MongoDB connection failed:', err.message);
-    process.exit(1);
-  }
-};
-
-connectDB();
-
-app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.get('/', (req, res) => res.send('Productr API Running'));
 
