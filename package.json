@@ -1,0 +1,9 @@
+{
+  "name": "productr",
+  "version": "1.0.0",
+  "description": "Root configuration for Render Deployment",
+  "scripts": {
+    "install": "cd server && npm install",
+    "start": "cd server && node server.js"
+  }
+}
